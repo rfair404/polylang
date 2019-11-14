@@ -78,8 +78,8 @@ class PLL_Table_Settings extends WP_List_Table {
 				</tr>',
 				esc_attr( $item->module ),
 				esc_html( $item->title ),
-				$form, // phpcs:ignore
-				implode( $item->get_buttons() ) // phpcs:ignore
+				wp_kses_post( $form ),
+				wp_kses_post( implode( $item->get_buttons() ) )
 			);
 		}
 	}
@@ -106,12 +106,12 @@ class PLL_Table_Settings extends WP_List_Table {
 
 			if ( 'cb' == $column_name ) {
 				echo '<th scope="row" class="check-column">';
-				echo $this->column_cb( $item ); // phpcs:ignore WordPress.Security.EscapeOutput
+				echo wp_kses_post( $this->column_cb( $item ) );
 				echo '</th>';
 			}
 			else {
 				printf( '<td class="%s">', esc_attr( $classes ) );
-				echo $this->column_default( $item, $column_name ); // phpcs:ignore WordPress.Security.EscapeOutput
+				echo wp_kses_post( $this->column_default( $item, $column_name ) );
 				echo '</td>';
 			}
 		}

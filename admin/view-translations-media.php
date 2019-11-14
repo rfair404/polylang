@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		}
 		?>
 		<tr>
-			<td class = "pll-media-language-column"><span class = "pll-translation-flag"><?php echo $language->flag; // phpcs:ignore WordPress.Security.EscapeOutput ?></span><?php echo esc_html( $language->name ); ?></td>
+			<td class = "pll-media-language-column"><span class = "pll-translation-flag"><?php echo wp_kses_post( $language->flag ); ?></span><?php echo esc_html( $language->name ); ?></td>
 			<td class = "pll-media-edit-column">
 				<?php
 				if ( ( $translation_id = $this->model->post->get_translation( $post_id, $language ) ) && $translation_id !== $post_id ) {
@@ -28,10 +28,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 						esc_attr( $language->slug ),
 						esc_attr( $translation_id )
 					);
-					echo $this->links->edit_post_translation_link( $translation_id ); // phpcs:ignore WordPress.Security.EscapeOutput
+					echo wp_kses_post( $this->links->edit_post_translation_link( $translation_id ) );
 				} else {
 					// No translation
-					echo $this->links->new_post_translation_link( $post_id, $language ); // phpcs:ignore WordPress.Security.EscapeOutput
+					echo wp_kses_post( $this->links->new_post_translation_link( $post_id, $language ) );
 				}
 				?>
 			</td>

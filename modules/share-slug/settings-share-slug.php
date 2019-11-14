@@ -70,10 +70,10 @@ class PLL_Settings_Share_Slug extends PLL_Settings_Module {
 				$( "input[name='force_lang']" ).change( function() {
 					var value = $( this ).val();
 					if ( value > 0 ) {
-						$( "#pll-module-share-slugs" ).removeClass( "inactive" ).addClass( "active" ).children( "td" ).children( ".row-actions" ).html( '<?php echo $activated; // phpcs:ignore WordPress.Security.EscapeOutput ?>' );
+						$( "#pll-module-share-slugs" ).removeClass( "inactive" ).addClass( "active" ).children( "td" ).children( ".row-actions" ).html( '<?php echo wp_kses_post( $activated ); ?>' );
 					}
 					else {
-						$( "#pll-module-share-slugs" ).removeClass( "active" ).addClass( "inactive" ).children( "td" ).children( ".row-actions" ).html( '<?php echo $deactivated; // phpcs:ignore WordPress.Security.EscapeOutput ?>' );
+						$( "#pll-module-share-slugs" ).removeClass( "active" ).addClass( "inactive" ).children( "td" ).children( ".row-actions" ).html( '<?php echo wp_kses_post( $deactivated ); ?>' );
 					}
 				} );
 			} )( jQuery );
